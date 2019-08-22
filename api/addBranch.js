@@ -292,8 +292,8 @@ var branchDetail = ((req, ress)=>{
                     if (err){
                         return ress.json({
                             status   : false,
-                            code     : 99,
-                            message  : 'branchlId is required field.',
+                            code     : 999,
+                            message  : 'branchId is required field.',
                             data     : {}
                         })
                     }else{

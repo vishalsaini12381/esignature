@@ -265,45 +265,53 @@ var addBranch = ((req, res)=>{
 
 
 var branchDetail = ((req, ress)=>{
-    console.log('qqqqqqqqq',req.body.branchId)
-    if(req.body.branchId=='undefined' || req.body.branchId==undefined || req.body.branchId==null || req.body.branchId==''){
-        return ress.json({
-            status   : false,
-            code     : 99,
-            message  : 'branchlId is required field.',
-            data     : {}
-        })
-    }else{
-        branch.aggregate([
-                { $match: { _id: mongoose.Types.ObjectId(req.body.branchId) }},
-                { $lookup:
-                {
-                    from: 'staffs',
-                    localField: '_id',
-                    foreignField: 'branchId',
-                    as: 'staff'
-                }
-                }
-                ],(function(err, res) {
-                    console.log('WWWWWWWWWWWWWWWWWW',res);
-                if (err){
-                    return ress.json({
-                        status   : false,
-                        code     : 99,
-                        message  : 'branchlId is required field.',
-                        data     : {}
-                    })
-                }else{
-                    if(res=='undefined' || res==undefined || res==null || res==''){
-                        return ress.json({code:101,status: true, message: 'No branch avaliable.',data : {}});
+    try{
+        console.log('bid',req.body.branchId)
+        const { branchId } = req.body
+        console.log('qqqqqqqqq',branchId)
+        if(branchId=='undefined' || branchId==undefined || branchId==null || branchId==''){
+            return ress.json({
+                status   : false,
+                code     : 99,
+                message  : 'branchId is required field.',
+                data     : {}
+            })
+        }else{
+            branch.aggregate([
+                    { $match: { _id: mongoose.Types.ObjectId(branchId) }},
+                    { $lookup:
+                    {
+                        from: 'staffs',
+                        localField: '_id',
+                        foreignField: 'branchId',
+                        as: 'staff'
+                    }
+                    }
+                    ],(function(err, res) {
+                        console.log('WWWWWWWWWWWWWWWWWW',res);
+                    if (err){
+                        return ress.json({
+                            status   : false,
+                            code     : 99,
+                            message  : 'branchlId is required field.',
+                            data     : {}
+                        })
                     }else{
-                        return ress.json({code:100,status: true, message: 'Branch Detail',data : res});
+                        if(res=='undefined' || res==undefined || res==null || res==''){
+                            return ress.json({code:101,status: true, message: 'No branch avaliable.',data : {}});
+                        }else{
+                            return ress.json({code:100,status: true, message: 'Branch Detail',data : res});
+                        }
+                        
                     }
                     
-                }
-                
-            })
-            )
+                })
+                )
+            }
+        }
+        catch(error){
+            console.log('99999999999',error);
+            return res.json({code:102,status: false, message: 'SomeThing Went Wrong',data : []});
         }
     
     });

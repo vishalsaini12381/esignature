@@ -76,6 +76,8 @@ var registerAdmin = ((req, res)=>{
     try {
         console.log(req.body.userName)
         // if(req.body.userName== '' || req.body.userName== null || req.body.userName== undefined) return res.json({status: false, message: "userName can not be blank"});
+        
+        if(req.body.userName== '' || req.body.userName== null || req.body.userName== undefined) return res.json({status: false, message: "userName can not be blank"});
 
         // if(req.body.password!== '' || req.body.password!== null || req.body.password!== undefined) return res.json({status: false, message: "Password can not be blank"});
 
@@ -86,10 +88,10 @@ var registerAdmin = ((req, res)=>{
             return res.json({status : false, message : 'The E-mail You Entered is Alredy Registered Plz Try Different'})
         }
  
-        // const pass = bcrypt.hashSync(req.body.password);
+        const pass = bcrypt.hashSync(req.body.password);
         var Admin = new admin ({
             userName :  req.body.userName,
-            password : req.body.password,
+            password : pass,
         });
             Admin.save((err,user)=>{
                 console.log('tttttttttt',user);
@@ -115,6 +117,7 @@ var registerAdmin = ((req, res)=>{
         userName : req.body.email,
         password : req.body.password
     }
+    console.log('newwwwww',log)
     try{
 
         admin.findOne({userName: log.userName}).then(async(doc)=>{

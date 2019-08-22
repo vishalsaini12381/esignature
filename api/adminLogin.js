@@ -74,8 +74,8 @@ var JWTSECRET = 'shivendra123';
 var registerAdmin = ((req, res)=>{
     console.log('///////////////////',req.body);
     try {
-        
-        if(req.body.userName!== '' || req.body.userName!== null || req.body.userName!== undefined) return res.json({status: false, message: "userName can not be blank"});
+        console.log(req.body.userName)
+        if(req.body.userName== '' || req.body.userName== null || req.body.userName== undefined) return res.json({status: false, message: "userName can not be blank"});
 
         // if(req.body.password!== '' || req.body.password!== null || req.body.password!== undefined) return res.json({status: false, message: "Password can not be blank"});
 

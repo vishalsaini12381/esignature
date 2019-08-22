@@ -278,7 +278,7 @@ var branchDetail = ((req, ress)=>{
             })
         }else{
             branch.aggregate([
-                    { $match: { _id: mongoose.Types.ObjectId(branchId) }},
+                    { $match: { _id: branchId }},
                     { $lookup:
                     {
                         from: 'staffs',

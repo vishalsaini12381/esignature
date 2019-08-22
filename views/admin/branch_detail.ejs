@@ -246,7 +246,7 @@
 
 <script>
 
-    // console.log('ssss','<%=query%>')
+     console.log('branchId=','<%=query%>')
     axios.post('/api/branchDetail',{branchId:'<%=query%>'})
        .then((response)=>{
             var result=response.data.data[0];
@@ -407,7 +407,7 @@ function changeStatus(obj,id,status){
                        location.reload();
                     }},(e)=>{
                         
-                    });
+                });
         }
     }
 

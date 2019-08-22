@@ -282,8 +282,8 @@ var branchDetail = ((req, ress)=>{
                     { $lookup:
                     {
                         from: 'staffs',
-                        localField: 'branchId',
-                        foreignField: '_id',
+                        localField: '_id',
+                        foreignField: 'branchId',
                         as: 'staff'
                     }
                     }

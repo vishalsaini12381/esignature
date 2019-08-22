@@ -288,7 +288,7 @@ var branchDetail = ((req, ress)=>{
                     }
                     }
                     ],(function(err, res) {
-                        console.log('WWWWWWWWWWWWWWWWWW',res);
+                        console.log('WWWWWWWWWWWWWWWWWW',err);
                     if (err){
                         return ress.json({
                             status   : false,

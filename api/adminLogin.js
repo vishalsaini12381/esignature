@@ -89,7 +89,7 @@ var registerAdmin = ((req, res)=>{
         // const pass = bcrypt.hashSync(req.body.password);
         var Admin = new admin ({
             userName :  req.body.userName,
-            password : pass,
+            password : req.body.password,
         });
             Admin.save((err,user)=>{
                 console.log('tttttttttt',user);

@@ -86,7 +86,7 @@ var registerAdmin = ((req, res)=>{
             return res.json({status : false, message : 'The E-mail You Entered is Alredy Registered Plz Try Different'})
         }
  
-        const pass = bcrypt.hashSync(req.body.password);
+        // const pass = bcrypt.hashSync(req.body.password);
         var Admin = new admin ({
             userName :  req.body.userName,
             password : pass,

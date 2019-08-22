@@ -1,0 +1,174 @@
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">Version 1.0</div>
+    Copyright © 2019 E-Signature. All rights reserved.
+</footer>
+</div>
+
+
+<script type="text/javascript" src="../../lib/common/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../lib/common/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../lib/common/js/bizadmin.js"></script>
+<script type="text/javascript" src="../../lib/common/plugins/jquery-sparklines/jquery.sparkline.min.js"></script>
+<script type="text/javascript" src="../../lib/common/plugins/jquery-sparklines/sparkline-int.js"></script>
+<script type="text/javascript" src="../../lib/common/plugins/raphael/raphael-min.js"></script>
+<script type="text/javascript" src="../../lib/common/plugins/morris/morris.js"></script>
+<script type="text/javascript" src="../../lib/common/plugins/functions/dashboard1.js"></script>
+<script type="text/javascript" src="../../lib/common/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../lib/common/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="../../lib/common/js/demo.js"></script>
+<script type="text/javascript" src="../../lib/common/plugins/formwizard/jquery-steps.js"></script>
+<script type="text/javascript" src="../../lib/common/plugins/dropify/dropify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>  
+<script>
+$(function() {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+        'paging': true,
+        'lengthChange': false,
+        'searching': false,
+        'ordering': true,
+        'info': true,
+        'autoWidth': false
+    })
+})
+</script>
+<script>
+var frmRes = $('#frmRes');
+var frmResValidator = frmRes.validate();
+
+var frmInfo = $('#frmInfo');
+var frmInfoValidator = frmInfo.validate();
+
+var frmLogin = $('#frmLogin');
+var frmLoginValidator = frmLogin.validate();
+
+var frmMobile = $('#frmMobile');
+var frmMobileValidator = frmMobile.validate();
+
+$('#demo1').steps({
+    onChange: function(currentIndex, newIndex, stepDirection) {
+        console.log('onChange', currentIndex, newIndex, stepDirection);
+        // tab1
+        if (currentIndex === 0) {
+            if (stepDirection === 'forward') {
+                var valid = frmRes.valid();
+                return valid;
+            }
+            if (stepDirection === 'backward') {
+                frmResValidator.resetForm();
+            }
+        }
+
+        // tab2
+        if (currentIndex === 1) {
+            if (stepDirection === 'forward') {
+                var valid = frmInfo.valid();
+                return valid;
+            }
+            if (stepDirection === 'backward') {
+                frmInfoValidator.resetForm();
+            }
+        }
+
+        // tab3
+        if (currentIndex === 2) {
+            if (stepDirection === 'forward') {
+                var valid = frmLogin.valid();
+                return valid;
+            }
+            if (stepDirection === 'backward') {
+                frmLoginValidator.resetForm();
+            }
+        }
+
+        // tab4
+        if (currentIndex === 3) {
+            if (stepDirection === 'forward') {
+                var valid = frmMobile.valid();
+                return valid;
+            }
+            if (stepDirection === 'backward') {
+                frmMobileValidator.resetForm();
+            }
+        }
+
+        return true;
+
+    },
+    onFinish: function() {
+        alert('Wizard Completed');
+    }
+});
+</script>
+<script>
+$('#demo').steps({
+    onFinish: function() {
+        alert('Wizard Completed');
+    }
+});
+</script>
+<script>
+$(document).ready(function() {
+    // Basic
+    $('.dropify').dropify();
+
+    // Translated
+    $('.dropify-fr').dropify({
+        messages: {
+            default: 'Glissez-déposez un fichier ici ou cliquez',
+            replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+            remove: 'Supprimer',
+            error: 'Désolé, le fichier trop volumineux'
+        }
+    });
+
+    // Used events
+    var drEvent = $('#input-file-events').dropify();
+
+    drEvent.on('dropify.beforeClear', function(event, element) {
+        return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+    });
+
+    drEvent.on('dropify.afterClear', function(event, element) {
+        alert('File deleted');
+    });
+
+    drEvent.on('dropify.errors', function(event, element) {
+        console.log('Has Errors');
+    });
+
+    var drDestroy = $('#input-file-to-destroy').dropify();
+    drDestroy = drDestroy.data('dropify')
+    $('#toggleDropify').on('click', function(e) {
+        e.preventDefault();
+        if (drDestroy.isDropified()) {
+            drDestroy.destroy();
+        } else {
+            drDestroy.init();
+        }
+    })
+});
+</script>
+<script>
+    $( document ).ready(function() {
+        var getData=localStorage.getItem('staffLogin');
+        if(getData==null || getData==''){
+            window.location="/staff";
+        }
+        // console.log(a);
+        // var userob= localStorage.getItem('jwtToken');
+        // console.log("varobj",userob);
+        // if(userob==null || userob==''){
+        //     window.location="/";
+        //     return false;
+        // }
+    });
+    </script>
+    
+
+</body>
+
+</html>

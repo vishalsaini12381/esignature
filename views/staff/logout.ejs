@@ -1,0 +1,12 @@
+<% include layout/footer %>
+<script>
+    $( document ).ready(function() {
+        localStorage.removeItem('staffLogin');
+        var getData=localStorage.getItem('staffLogin');
+        if(getData){
+            window.location="/staff/dashboard";
+        }else{
+            window.location="/staff";
+        }
+    });
+    </script>

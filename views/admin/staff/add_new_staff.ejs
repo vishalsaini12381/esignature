@@ -1,0 +1,237 @@
+<% include ../layout/header %>
+<div class="content-wrapper">
+    <div class="content-header sty-one">
+        <h1>  Add New Staff </h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><i class="fa fa-angle-right"></i> Add New Staff </li>
+        </ol>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <div class="card-body">
+
+                <div id="demo">
+                    <div class="step-app">
+                        <ul class="step-steps">
+                            <li class="active"><a href="#step1">Enter Staff Deail</a></li>
+                        </ul>
+                        <div class="step-content for-border-remove">
+                            <div class="step-tab-panel active" id="step1">
+                                <form>
+
+                                    <div class="row m-t-2">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Staff Name:</label>
+                                                <input class="form-control" id="staffName" name = "staffName" type="text" Value="" Placeholder="Staff Name">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffNameError"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Staff Telephone:</label>
+                                                <input class="form-control" id="staffMobile" name = "staffMobile" type="text" Value="" Placeholder="9179xxxxxxx">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffMobileError"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName1">Staff Email_Id:</label>
+                                                <input class="form-control" id="staffEmail" name = "staffEmail" type="email" Value="" Placeholder="e_sign23@gmail.com">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffEmailError"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName1">Staff Password:</label>
+                                                <input class="form-control" id="staffPassword" name = "staffPassword" type="password" Value="" Placeholder="XXXXXXXXXX">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffPasswordError"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName1">Staff Confirm Password:</label>
+                                                <input class="form-control" id="staffPasswordConfirm" name = "staffPasswordConfirm" type="password" Value="" Placeholder="XXXXXXXXXX">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffPasswordConfirmError"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName1">Staff Postal Code:</label>
+                                                <input class="form-control" id="staffPostalCode" name = "staffPostalCode" type="text" Value="" Placeholder="86791">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffPostalCodeError"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Staff Country:</label>
+                                                <input class="form-control" id="staffCountry" name = "staffCountry" type="text" Value="" Placeholder="Staff Name">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffCountryError"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName1">Staff City:</label>
+                                                <input class="form-control" id="staffCity" name = "staffCity" type="text" Value="" Placeholder="Staff Name">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffCityError"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Staff Address:</label>
+                                                <input class="form-control" id="staffAddress" name = "staffAddress" type="text" Value="" Placeholder=" Address">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffAddressError"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1"> Select Branch:</label>
+                                                <select class="form-control" id="branchId">
+                                                    <option value="">Select here</option>
+                                                </select>
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="branchIdError"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- <div class="col-md-6">
+                                            <div class="form-group field-color">
+                                                <p>*all fields Mandatory</p>
+                                            </div>
+                                        </div> -->
+                                        <div class="col-md-12">
+                                            <button type="button" id="btn" onClick="signin()" data-direction="finish" class="btn btn-primary save-button">Save</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Main row -->
+    </div>
+</div>
+<% include ../layout/footer %>
+<script>
+
+axios.post('/api/branchList',{})
+    .then((response)=>{
+        var result=response.data.data;
+        if(response.data.code==100){
+            var htmlData='<option value="">Select here</option>';var sr=1;
+            $("#branchId").empty();
+            result.forEach(function(res){
+                // console.log(res);
+                htmlData+='<option value="'+res['_id']+'">'+res['branchName']+'</option>';
+                
+            })
+            $("#branchId").append(htmlData);
+        }},(e)=>{
+            
+        });
+
+
+
+    function signin(){
+        $(".errorPrint").css('display','none');
+        var idValidate=false;
+        $(".form-control").each(function (index, value) {
+            // console.log('div' + index + ':' + $(this).attr('id'));
+            if($(this).val()){
+                $("#"+$(this).attr('id')+'Error').css('display','none');
+            }else{
+                idValidate=true;
+                $("#"+$(this).attr('id')+'Error').empty();
+                $("#"+$(this).attr('id')+'Error').append('*'+$(this).attr('id')+' is required field');
+                $("#"+$(this).attr('id')+'Error').css('display','block');
+            }
+        });
+        if(idValidate){
+            return false;
+        }else{
+            var emailPattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+            
+            var staffName               = $("#staffName").val();
+            var staffMobile             = $("#staffMobile").val();
+            var staffEmail              = $("#staffEmail").val();
+            var staffPostalCode         = $("#staffPostalCode").val();
+            var staffCountry            = $("#staffCountry").val();
+            var staffCity               = $("#staffCity").val();
+            var staffAddress            = $("#staffAddress").val();
+            var branchId                = $("#branchId").val();
+            var staffPassword           = $("#staffPassword").val();
+            var staffPasswordConfirm    = $("#staffPasswordConfirm").val();
+            
+            if(!emailPattern.test(staffEmail)){
+                $("#staffEmailError").empty();
+                $("#staffEmailError").append('*not a valid e-mail address');
+                $("#staffEmailError").css('display','block');
+                return false;
+            }
+            if(staffPassword.length<8){
+                $("#staffPasswordError").empty();
+                $("#staffPasswordError").append('*Password should be greated than 7 digits.');
+                $("#staffPasswordError").css('display','block');
+                return false;
+            }
+            if(staffPassword!=staffPasswordConfirm){
+                $("#staffPasswordConfirmError").empty();
+                $("#staffPasswordConfirmError").append('*Confirm Password not match.');
+                $("#staffPasswordConfirmError").css('display','block');
+                return false;
+            }
+            axios.post('/api/addStaff',{staffName:staffName,staffMobile:staffMobile,staffEmailId:staffEmail,staffPassword:staffPassword,staffPostalCode:staffPostalCode,staffCountry:staffCountry,staffCity:staffCity,staffAddress:staffAddress,branchId:branchId})
+                .then((response)=>{
+                    console.log(response)
+                    if(response.data.code==100){
+                        console.log(response);
+                        // window.location='/admin/dashboard';
+                        swal({
+                            title: "Success!",
+                            text: response.data.message,
+                            icon: "success",
+                            dangerMode: false,
+                            closeOnClickOutside: false,
+                        }).then(function() {
+                            window.location.reload();
+                        });
+                    }else{
+                        // alert(response.data.message);
+                        swal({
+                            title: "OOPS!",
+                            text: response.data.message,
+                            icon: "warning",
+                            dangerMode: true,
+                        })
+                        console.log(response);
+                    }},(e)=>{
+                        // alert(response.data.message);
+                        swal({
+                            title: "OOPS!",
+                            text: "Something went wrong.",
+                            icon: "warning",
+                            dangerMode: true,
+                        })
+                    });
+        }
+
+};
+    </script>

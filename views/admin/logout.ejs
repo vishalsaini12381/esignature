@@ -1,0 +1,28 @@
+<script src="http://gropse.com/gropse.com/design/esignature/admin/js/jquery.min.js"></script>
+<script src="http://gropse.com/gropse.com/design/esignature/admin/js/bootstrap.min.js"></script>
+<script src="http://gropse.com/gropse.com/design/esignature/admin/js/bizadmin.js"></script>
+<script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/jquery-sparklines/jquery.sparkline.min.js"></script>
+<script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/jquery-sparklines/sparkline-int.js"></script>
+<script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/raphael/raphael-min.js"></script>
+<script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/morris/morris.js"></script>
+<script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/functions/dashboard1.js"></script>
+<script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="http://gropse.com/gropse.com/design/esignature/admin/js/demo.js"></script>
+<script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/formwizard/jquery-steps.js"></script>
+<script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/dropify/dropify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>  
+<script>
+    $( document ).ready(function() {
+        localStorage.removeItem('adminLogin');
+        var getData=localStorage.getItem('adminLogin');
+        console.log('lllllll',getData);
+        if(getData){
+            window.location="/admin/dashboard";
+        }else{
+            window.location="/admin";
+        }
+    });
+    </script>

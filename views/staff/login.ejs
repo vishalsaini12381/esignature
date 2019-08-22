@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>E-Signature : Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../lib/common/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../lib/common/css/et-line-font/et-line-font.css">
+    <link rel="stylesheet" href="../../lib/common/css/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="../../lib/common/css/simple-lineicon/simple-line-icons.css">
+    <link rel="stylesheet" href="../../lib/common/plugins/datatables/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="../../lib/common/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../../lib/common/plugins/formwizard/jquery-steps.css">
+    <link rel="stylesheet" href="../../lib/common/plugins/dropify/dropify.min.css">
+    <link rel="stylesheet" href="../../lib/common/css/style.css">
+    <style>
+    .login-box .btn.btn-flat {
+        box-shadow: none;
+        border-width: 1px;
+        border-radius: 5px;
+    }
+    .paswwordeye input {
+        position: relative;
+    }
+    .paswwordeye a {
+        position: absolute;
+        top: 29px;
+        right: 15px;
+        color: #fff !important;
+        background: #3ec1fb;
+        padding: 9px 12px;
+        border-radius: 0px 7px 5px 0px;
+    }
+    </style>
+  </head>
+  <body class="skin-blue sidebar-mini" style="    height: auto;
+  min-height: 100%;
+  background: url(../../lib/images/loginback.gif) no-repeat center top;
+  background-size: cover;">
+<div class="login-box sty1">
+    <div class="login-box-body sty1">
+        <div class="login-logo">
+            <a href="#"><img src="../../lib/images/logo.png" alt="lpgo" /></a>
+        </div>
+        <form id="loginForm">
+            <p class="login-box-msg">Sign in to start your session</p>
+            <div class="form-group has-feedback">
+                <input type="text" id="email" name = "email"  class="form-control required" placeholder="Email" />
+                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="emailError">*Email is required field</div>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" id="pass" name = "password"  class="form-control required" placeholder="Password" />
+                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="passwordError">*Password is required field</div>
+            </div>
+            <div>
+                <div class="col-xs-4 m-t-1">
+                    <button type="button" id="btn" onClick="signin()" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <a style="color: #fff;" onclick="forgotPasswordClick(this)">Forgot Password</a>
+            </div>
+        </form>
+
+        <form id="forgotForm" style="display: none;">
+                <p class="login-box-msg">Recover your password.</p>
+            <div class="form-group has-feedback">
+                <input type="text" id="forgotEmail" name = "forgotEmail"  class="form-control required" placeholder="Email" />
+                <div style ="font-size:13px;color:red;display:none;" id="forgotEmailError">*Email is required field</div>
+            </div>
+            <div>
+                <div class="col-xs-4 m-t-1">
+                    <button type="button" id="btn" onClick="forgotPassword(this)" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <a style="color: #fff;" onclick="loginClick(this)">Login</a>
+            </div>
+        </form>
+        <form id="verifyForm" style="display: none;">
+                <p class="login-box-msg">Verify Your Account.</p>
+            <div class="form-group has-feedback">
+                <input type="text" id="verifyOtp" name = "verifyOtp"  class="form-control required" placeholder="Enter Otp" />
+                <div style ="font-size:13px;color:red;display:none;" id="verifyOtpError">*OTP is required field</div>
+            </div>
+            <div>
+                <div class="col-xs-4 m-t-1">
+                    <button type="button" id="btn" onClick="verifyAccount(this)" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+            </div>
+            <!-- <div class="form-group has-feedback">
+                <a style="color: #fff;" onclick="loginClick(this)">Login</a>
+            </div> -->
+        </form>
+        <form id="resetPasswordForm" style="display: none;">
+            <p class="login-box-msg">Reset Password.</p>
+            <div class="col-md-12">
+                <div class="form-group paswwordeye">
+                    <label for="lastName1" style="    color: #fff;">New Password:</label>
+                    <input class="form-control passwordValidate" id="changePassword" type="password" value="" placeholder="New Password">
+                    <a style="cursor: pointer" onclick="showPassword(this,'changePassword')" data-status='0'><i class="fa fa-eye"></i></a>
+                    <div class="errorPrintPassword" style ="font-size:13px;color:red;display:none;" id="changePasswordError"></div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group paswwordeye">
+                    <label for="lastName1" style="    color: #fff;">Confirm Name Password:</label>
+                    <input class="form-control passwordValidate" id="changeConfirmPassword" type="password" value="" placeholder="Confirm Name Password">
+                    <a style="cursor: pointer" onclick="showPassword(this,'changeConfirmPassword')" data-status='0'><i class="fa fa-eye"></i></a>
+                    <div class="errorPrintPassword" style ="font-size:13px;color:red;display:none;" id="changeConfirmPasswordError"></div>
+                </div>
+            </div>
+            <div>
+                <div class="col-xs-4 m-t-1">
+                    <button type="button" id="btn" onClick="resetPassword(this)" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+            </div>
+            <!-- <div class="form-group has-feedback">
+                <a style="color: #fff;" onclick="loginClick(this)">Login</a>
+            </div> -->
+        </form>
+    </div>
+</div>
+
+
+
+<!-- <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/bizadmin.js"></script>
+    <script type="text/javascript" src="./js/jquery.sparkline.min.js"></script>
+    <script type="text/javascript" src="./js/sparkline-int.js"></script>
+    <script type="text/javascript" src="./js/raphael-min.js"></script>
+    <script type="text/javascript" src="./js/morris.js"></script>
+    <script type="text/javascript" src="./js/dashboard1.js"></script>
+    <script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="./js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/demo.js"></script>
+    <script type="text/javascript" src="./js/jquery-steps.js"></script>
+    <script type="text/javascript" src="./js/dropify.min.js"></script>
+    <script type="text/javascript"  src="./js/bootstrap-multiselect.min.js"></script> -->
+
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/js/jquery.min.js"></script>
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/js/bootstrap.min.js"></script>
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/js/bizadmin.js"></script>
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/jquery-sparklines/jquery.sparkline.min.js"></script>
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/jquery-sparklines/sparkline-int.js"></script>
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/raphael/raphael-min.js"></script>
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/morris/morris.js"></script>
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/functions/dashboard1.js"></script>
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/js/demo.js"></script>
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/formwizard/jquery-steps.js"></script>
+    <script src="http://gropse.com/gropse.com/design/esignature/admin/plugins/dropify/dropify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>  
+    
+    <script>
+        var userId="";
+    function signin(){
+        $(".errorPrint").css('display','none');
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('pass').value;
+        // console.log(email+'/'+password);
+        if(email=="" || password==""){
+            if(email==""){
+                $("#emailError").css('display','block');
+            }
+            if(password==""){
+                $("#passwordError").css('display','block');
+            }
+            return false;
+        }
+   //console.log('this:',email,password);
+//    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('jwtToken');
+
+    axios.post('/api/staffLogin',{email:email,password:password})
+    .then((response)=>{
+        if(response.data.status){
+            console.log(response);
+            // if (typeof(Storage) !== "undefined") {
+            //     localStorage.setItem("jwtToken", response.data.token);
+            // }
+            console.log(response.data.data)
+            username = response.data.data.staffName;
+            tokenId = response.data.data._id;
+            isLogin= 1;
+            var testObject = {username,isLogin,tokenId};
+            localStorage.setItem('staffLogin', JSON.stringify(testObject));
+            //console.log("qwertyu",username,useremail)
+            //alert(response.data.message);
+            window.location='/staff/dashboard';
+        }else{
+            // alert(response.data.message);
+            swal({
+                title: "OOPS!",
+                text: response.data.message,
+                icon: "warning",
+                dangerMode: true,
+            })
+            console.log(response);
+        }},(e)=>{
+            // alert(response.data.message);
+            swal({
+                title: "OOPS!",
+                text: "Something went wrong.",
+                icon: "warning",
+                dangerMode: true,
+            })
+        });
+};
+
+
+function forgotPassword(){
+        var forgotEmail = document.getElementById('forgotEmail').value;
+        console.log(forgotEmail)
+        if(forgotEmail==""){
+            if(forgotEmail==""){
+                $("#forgotEmailError").css('display','block');
+            }
+            return false;
+        }
+     axios.post('/api/staffForgotPassword',{email:forgotEmail})
+    .then((response)=>{
+        if(response.data.code==100){
+            swal({
+                title: "Success!",
+                text: response.data.message,
+                icon: "success",
+                dangerMode: false,
+                closeOnClickOutside: false,
+            }).then(function() {
+                // window.location.href='dashboard';
+                $("#verifyForm").slideDown();
+                $("#forgotForm").slideUp();
+            });
+        }else{
+            // alert(response.data.message);
+            swal({
+                title: "OOPS!",
+                text: response.data.message,
+                icon: "warning",
+                dangerMode: true,
+                closeOnClickOutside: false,
+            }).then(function() {
+                //window.location.reload();
+            });
+        }},(e)=>{
+            // alert(response.data.message);
+            swal({
+                title: "OOPS!",
+                text: "Something went wrong.",
+                icon: "warning",
+                dangerMode: true,
+            })
+        });
+};
+
+
+function verifyAccount(){
+        var forgotEmail = document.getElementById('forgotEmail').value;
+        var verifyOtp = document.getElementById('verifyOtp').value;
+        if(forgotEmail==""){
+            if(forgotEmail==""){
+                $("#verifyOtpError").css('display','block');
+            }
+            return false;
+        }
+        if(verifyOtp==""){
+            if(verifyOtp==""){
+                $("#verifyOtpError").css('display','block');
+            }
+            return false;
+        }
+     axios.post('/api/staffVerifyOtp',{email:forgotEmail,otp:verifyOtp})
+    .then((response)=>{
+        if(response.data.code==100){
+            userId=response.data.data._id;
+            swal({
+                title: "Success!",
+                text: response.data.message,
+                icon: "success",
+                dangerMode: false,
+                closeOnClickOutside: false,
+            }).then(function() {
+                // window.location.href='dashboard';
+                $("#resetPasswordForm").slideDown();
+                $("#verifyForm").slideUp();
+            });
+        }else{
+            // alert(response.data.message);
+            swal({
+                title: "OOPS!",
+                text: response.data.message,
+                icon: "warning",
+                dangerMode: true,
+                closeOnClickOutside: false,
+            }).then(function() {
+                //window.location.reload();
+            });
+        }},(e)=>{
+            // alert(response.data.message);
+            swal({
+                title: "OOPS!",
+                text: "Something went wrong.",
+                icon: "warning",
+                dangerMode: true,
+            })
+        });
+};
+
+function resetPassword(){
+    var isValidation=true;
+        $(".errorPrintPassword").css('display','none');
+        var changePassword = document.getElementById('changePassword').value;
+        var changeConfirmPassword = document.getElementById('changeConfirmPassword').value;
+        console.log(changePassword+'/'+changeConfirmPassword)
+        if(changePassword==""){
+            if(changePassword==""){
+                $("#changePasswordError").empty();
+                $("#changePasswordError").append('*Password is required field.');
+                $("#changePasswordError").css('display','block');
+            }
+            isValidation=false;
+        }
+        if(changeConfirmPassword==""){changeConfirmPassword
+            if(changeConfirmPassword==""){
+                $("#changeConfirmPasswordError").empty();
+                $("#changeConfirmPasswordError").append('*Confirm Password is required field.');
+                $("#changeConfirmPasswordError").css('display','block');
+            }
+            isValidation=false;
+        }
+        if(isValidation==false){
+            return false
+        }
+        if(changePassword.length<8){
+            $("#changePasswordError").empty();
+            $("#changePasswordError").append('*Password should be greated than 7 digits.');
+            $("#changePasswordError").css('display','block');
+            return false;
+        }
+        if(changePassword!=changeConfirmPassword){
+            $("#changeConfirmPasswordError").empty();
+            $("#changeConfirmPasswordError").append('*Confirm Password not match.');
+            $("#changeConfirmPasswordError").css('display','block');
+            return false;
+        }
+     axios.post('/api/staffResetPassword',{userId:userId,password:changePassword})
+    .then((response)=>{
+        if(response.data.code==100){
+            username = response.data.data.staffName;
+            tokenId = response.data.data._id;
+            isLogin= 1;
+            var testObject = {username,isLogin,tokenId};
+            localStorage.setItem('staffLogin', JSON.stringify(testObject));
+            swal({
+                title: "Success!",
+                text: response.data.message,
+                icon: "success",
+                dangerMode: false,
+                closeOnClickOutside: false,
+            }).then(function() {
+                window.location='/staff/dashboard';
+            });
+        }else{
+            // alert(response.data.message);
+            swal({
+                title: "OOPS!",
+                text: response.data.message,
+                icon: "warning",
+                dangerMode: true,
+                closeOnClickOutside: false,
+            }).then(function() {
+                //window.location.reload();
+            });
+        }},(e)=>{
+            // alert(response.data.message);
+            swal({
+                title: "OOPS!",
+                text: "Something went wrong.",
+                icon: "warning",
+                dangerMode: true,
+            })
+        });
+};
+
+
+function forgotPasswordClick(obj){
+    $("#loginForm").slideUp();
+    $("#forgotForm").slideDown();
+}
+function loginClick(obj){
+    $("#loginForm").slideDown();
+    $("#forgotForm").slideUp();
+}
+
+function showPassword(obj,dataId){
+    var status=$(obj).attr('data-status');
+    if(status==1){
+        $("#"+dataId).attr('type','password');
+        $(obj).attr('data-status',0);
+    }else{
+        $("#"+dataId).attr('type','text');
+        $(obj).attr('data-status',1);
+    }
+}
+    </script>
+    <script>
+        $( document ).ready(function() {
+            var getData=localStorage.getItem('staffLogin');
+            if(getData){
+                window.location="/staff/dashboard";
+            }
+        });
+        </script>
+  </body>
+</html>

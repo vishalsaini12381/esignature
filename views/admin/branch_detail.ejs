@@ -1,0 +1,414 @@
+<% include layout/header %>
+<div class="content-wrapper">
+    <div class="content-header sty-one">
+        <h1>Branch Detail</h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><i class="fa fa-angle-right"></i>Branch Detail</li>
+        </ol>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <div class="card-body">
+
+                <div id="demo">
+                    <div class="step-app">
+                        <ul class="step-steps">
+                            <li class="active"><a href="#step1"><span class="number">1</span>Branch Detail</a></li>
+                            <li class=""><a href="#step2"><span class="number">2</span> Assigned Staff Details</a></li>
+                            <li class=""><a href="#step3"><span class="number">3</span> Branch Signed Record</a></li>
+                        </ul>
+                        <div class="step-content for-border-remove">
+                            <div class="step-tab-panel active" id="step1">
+                                <form>
+                                    <div class="row">
+
+                                        <div class="col-lg-4 col-md-6 m-b-3">
+                                            <div class="widget-info ebox3">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-white">
+                                                            <p>No. of People Signed</p>
+                                                            <h2 class="font-weight-bold">50</h2></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 m-b-3">
+                                            <div class="widget-info ebox4">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-white">
+                                                            <p>Branch Rating Score</p>
+                                                            <h2 class="font-weight-bold">3.5/5</h2></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 m-b-3">
+                                            <div class="edit-branch">
+                                                <!-- <i class="fa fa-edit"></i> -->
+                                                <div class="mytoggle">
+                                                    <label class="switch" id="enableStatus">
+                                                        
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row m-t-2">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName1">Branch-ID:</label>
+                                                <input class="form-control" id="branchId" readonly style="cursor: no-drop;" type="text" Value="" Placeholder="E_1">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Branch Name:</label>
+                                                <input class="form-control inputText" id="branchName" type="text" Value="" Placeholder="Branch Name">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="branchNameError"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName1">Branch Email:</label>
+                                                <input class="form-control inputText" id="branchEmail" type="text" Value="" Placeholder="E_sign23@gmail.com">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="branchEmailError"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Branch Telephone:</label>
+                                                <input class="form-control inputText" id="branchMobile" type="text" Value="" Placeholder="9179xxxxxxx">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="branchMobileError"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName1">Branch Postal Code:</label>
+                                                <input class="form-control inputText" id="branchCode" type="text" Value="" Placeholder="86791">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="branchCodeError"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Branch Country:</label>
+                                                <input class="form-control inputText" id="branchCountry" type="text" Value="" Placeholder="Country Name">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="branchCountryError"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName1">Branch City:</label>
+                                                <input class="form-control inputText" id="branchCity" type="text" Value="" Placeholder="City Name">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="branchCityError"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Branch Address:</label>
+                                                <input class="form-control inputText" id="branchAddress" type="text" Value="" Placeholder=" Address">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="branchAddressError"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-12">
+                                            <button type="button" id="btn" onclick="signin()" data-direction="finish" class="btn btn-primary save-button">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="step-tab-panel for-border-remove" id="step2">
+                                <div class="row">
+                                    <div class="col-xl-12">
+
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="example1" class="table table-bordered table-striped table-button">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sr. No.</th>
+                                                            <th>Staff_Id</th>
+                                                            <th>Staff Name</th>
+                                                            <th>Mobile No.</th>
+                                                            <th>Email_Id</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="staffData">
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="step-tab-panel" id="step3">
+                                <div class="row">
+                                    <div class="col-xl-12">
+
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="example3" class="table table-bordered table-striped table-button">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>User_ID</th>
+                                                            <th>Card_Id</th>
+                                                            <th>Staff_Id</th>
+                                                            <th>Doc_Id</th>
+                                                            <th>User_Name</th>
+                                                            <th>Signature Type</th>
+                                                            <th>Plate No.</th>
+                                                            <th>Signed Date & Time</th>
+                                                            <th>Rating & Review</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1NpS</td>
+                                                            <td>N1</td>
+                                                            <td>Win3567</td>
+                                                            <td>917957979345 </td>
+                                                            <td>Prateek</td>
+                                                            <td>Thumbprint & Signature</td>
+                                                            <td>917957</td>
+                                                            <td>5/07/2019 12:30 PM</td>
+                                                            <td> <a href="#viewmessege" data-toggle="modal">View </a></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>1BDG</td>
+                                                            <td>N1</td>
+                                                            <td>Win3567</td>
+                                                            <td>917957979345 </td>
+                                                            <td>Prateek</td>
+                                                            <td> Signature</td>
+                                                            <td>917957</td>
+                                                            <td>5/07/2019 12:30 PM</td>
+                                                            <td> <a href="#viewmessege" data-toggle="modal">View </a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1DHT</td>
+                                                            <td>N1</td>
+                                                            <td>Win3567</td>
+                                                            <td>917957979345 </td>
+                                                            <td>Prateek</td>
+                                                            <td>Thumbprint & Signature</td>
+                                                            <td>917957</td>
+                                                            <td>5/07/2019 12:30 PM</td>
+                                                            <td> <a href="#viewmessege" data-toggle="modal">View </a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1DFR</td>
+                                                            <td>N1</td>
+                                                            <td>Win3567</td>
+                                                            <td>917957979345 </td>
+                                                            <td>Prateek</td>
+                                                            <td> Signature</td>
+                                                            <td>917957</td>
+                                                            <td>5/07/2019 12:30 PM</td>
+                                                            <td> <a href="#viewmessege" data-toggle="modal">View </a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Main row -->
+    </div>
+</div>
+<% include layout/footer %>
+
+
+<script>
+
+    // console.log('ssss','<%=query%>')
+    axios.post('/api/branchDetail',{branchId:'<%=query%>'})
+       .then((response)=>{
+            var result=response.data.data[0];
+            console.log('ssss',response)
+            if(response.data.code==100){
+                // console.log('ssss',response.data.data)
+               
+                $("#branchId").val(result._id);
+                $("#branchName").val(result.branchName);
+                $("#branchMobile").val(result.branchMobile);
+                $("#branchEmail").val(result.branchEmailId);
+                $("#branchCode").val(result.branchPostalCode);
+                $("#branchCountry").val(result.branchCountry);
+                $("#branchCity").val(result.branchCity);
+                $("#branchAddress").val(result.branchAddress);
+                $("#enableStatus").empty();
+                if(result.status==1){
+                    $("#enableStatus").append('<input type="checkbox" onchange="changeStatus(this,\''+result._id+'\',0)" checked=""><span class="slider round"></span>');
+                }else{
+                    $("#enableStatus").append('<input type="checkbox" onchange="changeStatus(this,\''+result._id+'\',1)"><span class="slider round"></span>');
+                }
+                // console.log('gegeggegeggegeg',result.staff)
+                var staffList=result.staff;
+                if(staffList){
+                    var htmlData='';var sr=1;
+                    $("#staffData").empty();
+                    staffList.forEach(element => {
+                        htmlData='<tr>'
+                            +'<td>'+sr+'</td>'
+                            +'<td>'+element['_id']+'</td>'
+                            +'<td>'+element['staffName']+'</td>'
+                            +'<td>'+element['staffMobile']+'</td>'
+                            +'<td>'+element['staffEmailId']+' </td>'
+                            +'<td>'
+                                +'<div class="mytoggle">'
+                                    +'<label class="switch">'
+                                        if(element['status']==1){
+                                            htmlData+='<input type="checkbox" onchange="changeStatusStaff(this,\''+element['_id']+'\',0)" checked="" >'
+                                        }else{
+                                            htmlData+='<input type="checkbox" onchange="changeStatusStaff(this,\''+element['_id']+'\',1)" >'
+                                        }
+                                        htmlData+='<span class="slider round"></span>'
+                                    +'</label>'
+                                +'</div>'
+                            +'</td>'
+                            +'<td><a href="staff-detail?id='+element['_id']+'">View </a></td>'
+                        +'</tr>';
+                        // console.log(htmlData)
+                        $("#staffData").append(htmlData);
+                        sr++;
+                    });
+                }
+           }else{
+                swal({
+                    title: "OOPS!",
+                    text: 'Something Went Wrong',
+                    icon: "warning",
+                    dangerMode: true,
+                    closeOnClickOutside: false,
+                }).then(function() {
+                    window.location.href='staff-list';
+                });
+           }},(e)=>{
+               
+           });
+
+    function signin(){
+        $(".errorPrint").css('display','none');
+        var idValidate=false;
+        $(".inputText").each(function (index, value) {
+            // console.log('div' + index + ':' + $(this).attr('id'));
+            if($(this).val()){
+                $("#"+$(this).attr('id')+'Error').css('display','none');
+            }else{
+                idValidate=true;
+                $("#"+$(this).attr('id')+'Error').empty();
+                $("#"+$(this).attr('id')+'Error').append('*'+$(this).attr('id')+' is required field');
+                $("#"+$(this).attr('id')+'Error').css('display','block');
+            }
+        });
+        if(idValidate){
+            return false;
+        }else{
+            var emailPattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+           
+            var branchName               = $("#branchName").val();
+            var branchMobile             = $("#branchMobile").val();
+            var branchEmail              = $("#branchEmail").val();
+            var branchCode               = $("#branchCode").val();
+            var branchCity               = $("#branchCity").val();
+            var branchCountry            = $("#branchCountry").val();
+            var branchAddress            = $("#branchAddress").val();
+            var branchId                 = '<%=query%>';
+        
+            
+            if(!emailPattern.test(branchEmail)){
+                $("#branchEmailError").empty();
+                $("#branchEmailError").append('*not a valid e-mail address');
+                $("#branchEmailError").css('display','block');
+                return false;
+            }
+            axios.post('/api/editBranch',{branchId:branchId,branchName:branchName,branchMobile:branchMobile,branchEmail:branchEmail,branchCode:branchCode,branchCountry:branchCountry,branchCity:branchCity,branchAddress:branchAddress})
+                .then((response)=>{
+                    console.log(response)
+                    if(response.data.code==100){
+                        console.log(response);
+                        // window.location='/admin/dashboard';
+                        swal({
+                            title: "Success!",
+                            text: response.data.message,
+                            icon: "success",
+                            dangerMode: false,
+                            closeOnClickOutside: false,
+                        }).then(function() {
+                            window.location.reload();
+                        });
+                    }else{
+                        // alert(response.data.message);
+                        swal({
+                            title: "OOPS!",
+                            text: response.data.message,
+                            icon: "warning",
+                            dangerMode: true,
+                        })
+                        console.log(response);
+                    }},(e)=>{
+                        // alert(response.data.message);
+                        swal({
+                            title: "OOPS!",
+                            text: "Something went wrong.",
+                            icon: "warning",
+                            dangerMode: true,
+                        })
+                    });
+        }
+
+};
+
+function changeStatus(obj,id,status){
+        if(id){
+            axios.post('/api/branchStatusChange',{status:status,branchId:id})
+                .then((response)=>{
+                    var result=response.data.data;
+                    if(response.data.code==100){
+                       location.reload();
+                    }},(e)=>{
+                        
+                    });
+        }
+    }
+
+    function changeStatusStaff(obj,id,status){
+        if(id){
+            axios.post('/api/staffStatusChange',{status:status,staffId:id})
+                .then((response)=>{
+                    var result=response.data.data;
+                    if(response.data.code==100){
+                       location.reload();
+                    }},(e)=>{
+                        
+                    });
+        }
+    }
+
+    </script>

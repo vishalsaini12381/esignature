@@ -1,0 +1,508 @@
+<% include ../layout/header %>
+<style>
+       .paswwordeye input {
+    position: relative;
+}
+   .paswwordeye a {
+    position: absolute;
+    top: 29px;
+    right: 15px;
+    color: #fff !important;
+    background: #1136bc;
+    padding: 9px 12px;
+    border-radius: 0px 7px 5px 0px;
+}
+</style>
+<div class="content-wrapper">
+    <div class="content-header sty-one">
+        <h1>Staff Detail</h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><i class="fa fa-angle-right"></i>Staff Detail</li>
+        </ol>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <div class="card-body">
+
+                <div id="demo">
+                    <div class="step-app">
+                        <ul class="step-steps">
+                            <li class="active"><a href="#step1"><span class="number">1</span>Staff Profile Deails</a></li>
+                            <li class=""><a href="#step2"><span class="number">2</span> Assigned Staff Details</a></li>
+                            <li class=""><a href="#step3"><span class="number">3</span> Staff Log-In Details</a></li>
+                        </ul>
+                        <div class="step-content for-border-remove">
+                            <div class="step-tab-panel active" id="step1">
+                                <form>
+
+                                    <div class="row m-t-2">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Staff-ID:</label>
+                                                <input class="form-control" readonly style="cursor:no-drop" id="staffId" name = "staffId" type="text" Value="" Placeholder="Staff-Id">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffIdError"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="lastName1">Staff Name:</label>
+                                                    <input class="form-control inputText" id="staffName" name = "staffName" type="text" Value="" Placeholder="Staff Name">
+                                                    <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffNameError"></div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="lastName1">Staff Telephone:</label>
+                                                    <input class="form-control inputText" id="staffMobile" name = "staffMobile" type="text" Value="" Placeholder="9179xxxxxxx">
+                                                    <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffMobileError"></div>
+                                                </div>
+                                            </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName1">Staff Email_Id:</label>
+                                                <input class="form-control inputText" id="staffEmail" name = "staffEmail" type="email" Value="" Placeholder="e_sign23@gmail.com">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffEmailError"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="firstName1">Staff Postal Code:</label>
+                                                    <input class="form-control inputText" id="staffPostalCode" name = "staffPostalCode" type="text" Value="" Placeholder="86791">
+                                                    <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffPostalCodeError"></div>
+                                                </div>
+                                            </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Staff Country:</label>
+                                                <input class="form-control inputText" id="staffCountry" name = "staffCountry" type="text" Value="" Placeholder="Staff Name">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffCountryError"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName1">Staff City:</label>
+                                                <input class="form-control inputText" id="staffCity" name = "staffCity" type="text" Value="" Placeholder="Staff Name">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffCityError"></div>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Staff Address:</label>
+                                                <input class="form-control inputText" id="staffAddress" name = "staffAddress" type="text" Value="" Placeholder=" Address">
+                                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="staffAddressError"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- <div class="col-md-6">
+                                            <div class="form-group field-color">
+                                                <p>*all fields Mandatory</p>
+                                            </div>
+                                        </div> -->
+                                        <div class="col-md-12">
+                                            <button type="button" id="btn" onClick="signin()" data-direction="finish" class="btn btn-primary save-button">Save</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="step-tab-panel for-border-remove" id="step2">
+                                <div class="row m-t-2">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstName1">Assigned Branch-ID:</label>
+                                            <input class="form-control" id="branchCode" readonly style="cursor:no-drop" type="text" Value="" Placeholder="E_1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastName1">Assigned Branch Name:</label>
+                                            <input class="form-control" id="branchName" readonly style="cursor:no-drop" type="text" Value="" Placeholder="Branch Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 staff-save">
+                                        <a href="#viewmessege" data-direction="finish" data-toggle="modal" class="btn btn-primary">Change Branch</a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="step-tab-panel" id="step3">
+                                <div class="row m-t-2">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstName1">Log-In:</label>
+                                            <input class="form-control" readonly style="cursor: no-drop" id="CredentialEmail" type="text" Value="" Placeholder="E_1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group paswwordeye">
+                                            <label for="lastName1">Log-In Password:</label>
+                                            <input class="form-control" readonly style="cursor: no-drop" id="CredentialPassword" type="Password" Value="" Placeholder="3457">
+                                            <a style="cursor: pointer" onclick="showPassword(this)" data-status='0'><i class="fa fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 staff-save">
+                                        <a href="#viewmessege2" data-direction="finish" data-toggle="modal" class="btn btn-primary">Change Password</a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Main row -->
+    </div>
+</div>
+
+<div class="modal fade" id="viewmessege" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Change Branch</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+                <div class="modal-body ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastName1">Staff Id:</label>
+                                <input class="form-control" readonly style="cursor: no-drop" id="modalStaffId" type="text" value="" placeholder="Id_23">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastName1">Staff Name:</label>
+                                <input class="form-control" readonly style="cursor: no-drop" id="modalStaffName" type="text" value="" placeholder="Person Name">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="lastName1"> Select Branch:</label>
+                                <select class="form-control" id="branchId">
+                                    <option value="">Select here</option>
+                                </select>
+                                <div style ="font-size:13px;color:red;display:none;" id="branchIdError"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-12 staff-save">
+                            <button data-direction="finish" onclick="changeBranch(this)" class="btn btn-primary">Assign</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+<div class="modal fade" id="viewmessege2" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+                <div class="modal-body ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastName1">New Password:</label>
+                                <input class="form-control" id="changePassword" type="password" value="" placeholder=" ">
+                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="changePasswordError"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastName1">Confirm Name Password:</label>
+                                <input class="form-control" id="changeConfirmPassword" type="password" value="" placeholder=" ">
+                                <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="changeConfirmPasswordError"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12 staff-save">
+                            <button data-direction="finish" onclick="staffChangePassword(this);" class="btn btn-primary">Change Password</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+<% include ../layout/footer %>
+<script>
+
+    // console.log('ssss','<%=query%>')
+    axios.post('/api/staffDetail',{staffId:'<%=query%>'})
+       .then((response)=>{
+            var result=response.data.data;
+            if(response.data.code==100){
+                console.log('ssss',response.data.data.branchId)
+                $("#branchCode").val(response.data.data.branchId[0]._id);
+                $("#branchName").val(response.data.data.branchId[0].branchName);
+                
+                axios.post('/api/branchList',{})
+                .then((branchListResponse)=>{
+                    var branchListresult=branchListResponse.data.data;
+                    if(branchListResponse.data.code==100){
+                        var htmlData='<option value="">Select here</option>';var sr=1;
+                        $("#branchId").empty();
+                        branchListresult.forEach(function(res){
+                            //  console.log(result.branchId);
+                            if(result.branchId==res['_id']){
+                                htmlData+='<option value="'+res['_id']+'" selected>'+res['branchName']+'</option>';
+                            }else{
+                                htmlData+='<option value="'+res['_id']+'">'+res['branchName']+'</option>';
+                            }
+                        })
+                        $("#branchId").append(htmlData);
+                    }},(e)=>{
+                        
+                });
+                $("#staffId").val(result._id);
+                $("#staffName").val(result.staffName);
+                $("#staffMobile").val(result.staffMobile);
+                $("#staffEmail").val(result.staffEmailId);
+                $("#staffPostalCode").val(result.staffPostalCode);
+                $("#staffCountry").val(result.staffCountry);
+                $("#staffCity").val(result.staffCity);
+                $("#staffAddress").val(result.staffAddress);
+                $("#CredentialEmail").val(result.staffEmailId);
+                $("#CredentialPassword").val(result.staffPassword);
+
+                $("#modalStaffId").val(result._id);
+                $("#modalStaffName").val(result.staffName);
+                
+           }else{
+                swal({
+                    title: "OOPS!",
+                    text: 'Something Went Wrong',
+                    icon: "warning",
+                    dangerMode: true,
+                    closeOnClickOutside: false,
+                }).then(function() {
+                    window.location.href='staff-list';
+                });
+           }},(e)=>{
+               
+           });
+
+           function showPassword(obj){
+                var status=$(obj).attr('data-status');
+                if(status==1){
+                    $("#CredentialPassword").attr('type','password');
+                    $(obj).attr('data-status',0);
+                }else{
+                    $("#CredentialPassword").attr('type','text');
+                    $(obj).attr('data-status',1);
+                }
+           }
+           function changeBranch(obj){
+               var staffId=$("#modalStaffId").val();
+               var branchId=$("#branchId").val();
+               if(staffId && branchId){
+                axios.post('/api/staffChangeBranch',{staffId:staffId,branchId:branchId})
+                    .then((branchListResponse)=>{
+                        if(branchListResponse.data.code==100){
+                            swal({
+                                title: "Success",
+                                text: branchListResponse.data.message,
+                                icon: "success",
+                                dangerMode: false,
+                                closeOnClickOutside: false,
+                            }).then(function() {
+                                window.location.reload();
+                            });
+                        }else{
+                            swal({
+                                title: "OOPS!",
+                                text: branchListResponse.data.message,
+                                icon: "warning",
+                                dangerMode: true,
+                                closeOnClickOutside: false,
+                            }).then(function() {
+                                window.location.reload();
+                            });
+                        }
+                    },(e)=>{
+                            
+                    });
+                }else{
+                    $("#branchIdError").empty();
+                    $("#branchIdError").append('*Select Branch.');
+                    $("#branchIdError").css('display','block');
+                }
+           }
+           function staffChangePassword(obj){
+            //console.log('sssssssssss')
+                $(".errorPrint").css('display','none');
+                var staffId=$("#modalStaffId").val();
+                var changePassword=$("#changePassword").val();
+                var changeConfirmPassword=$("#changeConfirmPassword").val();
+                if(changeConfirmPassword && changePassword){
+                    if(changePassword.length<8){
+                        $("#changePasswordError").empty();
+                        $("#changePasswordError").append('*Password should be greated than 7 digits.');
+                        $("#changePasswordError").css('display','block');
+                        return false;
+                    }
+                    if(changePassword!=changeConfirmPassword){
+                        $("#changeConfirmPasswordError").empty();
+                        $("#changeConfirmPasswordError").append('*Confirm Password not match.');
+                        $("#changeConfirmPasswordError").css('display','block');
+                        return false;
+                    }
+
+                    axios.post('/api/staffChangePassword',{staffId:staffId,password:changePassword})
+                    .then((branchListResponse)=>{
+                        if(branchListResponse.data.code==100){
+                            swal({
+                                title: "Success",
+                                text: branchListResponse.data.message,
+                                icon: "success",
+                                dangerMode: false,
+                                closeOnClickOutside: false,
+                            }).then(function() {
+                                window.location.reload();
+                            });
+                        }else{
+                            swal({
+                                title: "OOPS!",
+                                text: branchListResponse.data.message,
+                                icon: "warning",
+                                dangerMode: true,
+                                closeOnClickOutside: false,
+                            }).then(function() {
+                                window.location.reload();
+                            });
+                        }
+                    },(e)=>{
+                            
+                    });
+
+                }else{
+                    // console.log('sssssssssss')
+                    if(changePassword==''){
+                        $("#changePasswordError").empty();
+                        $("#changePasswordError").append('*Password is required field.');
+                        $("#changePasswordError").css('display','block');
+                    }if(changeConfirmPassword==''){
+                        $("#changeConfirmPasswordError").empty();
+                        $("#changeConfirmPasswordError").append('*Confirm Password is required field.');
+                        $("#changeConfirmPasswordError").css('display','block');
+                    }
+                    return false;
+                }
+           }
+
+
+    function signin(){
+        $(".errorPrint").css('display','none');
+        var idValidate=false;
+        $(".inputText").each(function (index, value) {
+            // console.log('div' + index + ':' + $(this).attr('id'));
+            if($(this).val()){
+                $("#"+$(this).attr('id')+'Error').css('display','none');
+            }else{
+                idValidate=true;
+                $("#"+$(this).attr('id')+'Error').empty();
+                $("#"+$(this).attr('id')+'Error').append('*'+$(this).attr('id')+' is required field');
+                $("#"+$(this).attr('id')+'Error').css('display','block');
+            }
+        });
+        if(idValidate){
+            return false;
+        }else{
+            var emailPattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+            
+            var staffName               = $("#staffName").val();
+            var staffMobile             = $("#staffMobile").val();
+            var staffEmail              = $("#staffEmail").val();
+            var staffPostalCode         = $("#staffPostalCode").val();
+            var staffCountry            = $("#staffCountry").val();
+            var staffCity               = $("#staffCity").val();
+            var staffAddress            = $("#staffAddress").val();
+            var staffId                 = $("#modalStaffId").val();
+        
+            
+            if(!emailPattern.test(staffEmail)){
+                $("#staffEmailError").empty();
+                $("#staffEmailError").append('*not a valid e-mail address');
+                $("#staffEmailError").css('display','block');
+                return false;
+            }
+            axios.post('/api/editStaff',{staffId:staffId,staffName:staffName,staffMobile:staffMobile,staffEmailId:staffEmail,staffPostalCode:staffPostalCode,staffCountry:staffCountry,staffCity:staffCity,staffAddress:staffAddress})
+                .then((response)=>{
+                    console.log(response)
+                    if(response.data.code==100){
+                        console.log(response);
+                        // window.location='/admin/dashboard';
+                        swal({
+                            title: "Success!",
+                            text: response.data.message,
+                            icon: "success",
+                            dangerMode: false,
+                            closeOnClickOutside: false,
+                        }).then(function() {
+                            window.location.reload();
+                        });
+                    }else{
+                        // alert(response.data.message);
+                        swal({
+                            title: "OOPS!",
+                            text: response.data.message,
+                            icon: "warning",
+                            dangerMode: true,
+                        })
+                        console.log(response);
+                    }},(e)=>{
+                        // alert(response.data.message);
+                        swal({
+                            title: "OOPS!",
+                            text: "Something went wrong.",
+                            icon: "warning",
+                            dangerMode: true,
+                        })
+                    });
+        }
+
+};
+
+    </script>

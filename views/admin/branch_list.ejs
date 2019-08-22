@@ -1,0 +1,96 @@
+<% include layout/header %>
+<div class="content-wrapper">
+    <div class="content-header sty-one">
+        <h1>Branch List</h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><i class="fa fa-angle-right"></i>Branch List</li>
+        </ol>
+    </div>
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="info-box">
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example1" class="table table-bordered table-striped table-button">
+                                <thead>
+                                    <tr>
+                                        <th>Sr. No.</th>
+                                        <th>Branch Name</th>
+                                        <th>Branch Code</th>
+                                        <th>Branch Mobile</th>
+                                        <th>Branch Email</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyData">
+                                    <tr class="odd"><td valign="top" colspan="7" class="dataTables_empty">No data available in table</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+ <% include layout/footer %>
+ <script>
+    
+ axios.post('/api/branchList',{})
+    .then((response)=>{
+        var result=response.data.data;
+        if(response.data.code==100){
+            var htmlData='';var sr=1;
+            $("#tbodyData").empty();
+            result.forEach(function(res){
+                // console.log(res);
+                htmlData='<tr>'
+                            +'<td>'+sr+'</td>'
+                            +'<td>'+res['branchName']+'</td>'
+                            +'<td>'+res['branchPostalCode']+'</td>'
+                            +'<td>'+res['branchMobile']+'</td>'
+                            +'<td>'+res['branchEmailId']+' </td>'
+                            +'<td>'
+                                +'<div class="mytoggle">'
+                                    +'<label class="switch">'
+                                        if(res['status']==1){
+                                            htmlData+='<input type="checkbox" onchange="changeStatus(this,\''+res['_id']+'\',0)" checked="" >'
+                                        }else{
+                                            htmlData+='<input type="checkbox" onchange="changeStatus(this,\''+res['_id']+'\',1)" >'
+                                        }
+                                        htmlData+='<span class="slider round"></span>'
+                                    +'</label>'
+                                +'</div>'
+                            +'</td>'
+                            +'<td><a href="branch-detail?id='+res['_id']+'">View </a></td>'
+                        +'</tr>';
+                        // console.log(htmlData)
+                $("#tbodyData").append(htmlData);
+                sr++;
+            })
+            $("#footerDiv").load(location.href + " #footerDiv");
+        }},(e)=>{
+            
+        });
+
+    function changeStatus(obj,id,status){
+        if(id){
+            axios.post('/api/branchStatusChange',{status:status,branchId:id})
+                .then((response)=>{
+                    var result=response.data.data;
+                    if(response.data.code==100){
+                       location.reload();
+                    }},(e)=>{
+                        
+                    });
+        }
+    }
+ </script>

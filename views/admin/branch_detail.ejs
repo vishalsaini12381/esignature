@@ -248,12 +248,11 @@
 
      console.log('branchId=','<%=query%>')
     axios.post('/api/branchDetail',{branchId:'<%=query%>'})
-       .then((response)=>{
-            var result=response.data.data[0];
-            console.log('ssss',response)
-            if(response.data.code==100){
-                // console.log('ssss',response.data.data)
-               
+       .then((responseData)=>{
+            var result=responseData.data.data.response;
+            console.log('ssss',responseData)
+            if(responseData.data.code==100){
+                
                 $("#branchId").val(result._id);
                 $("#branchName").val(result.branchName);
                 $("#branchMobile").val(result.branchMobile);
@@ -269,7 +268,7 @@
                     $("#enableStatus").append('<input type="checkbox" onchange="changeStatus(this,\''+result._id+'\',1)"><span class="slider round"></span>');
                 }
                 // console.log('gegeggegeggegeg',result.staff)
-                var staffList=result.staff;
+                var staffList=responseData.data.data.staffData[0];
                 if(staffList){
                     var htmlData='';var sr=1;
                     $("#staffData").empty();

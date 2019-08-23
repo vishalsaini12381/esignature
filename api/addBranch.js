@@ -1,4 +1,5 @@
 var branch = require('../model/branchSchema');
+var staff = require('../model/staffSchema');
 
 var mongoose = require('mongoose');
 
@@ -277,41 +278,74 @@ var branchDetail = ((req, ress)=>{
                 data     : {}
             })
         }else{
-            branch.aggregate([
-                    { $match: { _id: mongoose.Types.ObjectId(branchId) }},
-                    { $lookup:
-                    {
-                        from: 'staffs',
-                        localField: '_id',
-                        foreignField: 'branchId',
-                        as: 'staff'
-                    }
-                    }
-                    ],(function(err, res) {
-                        console.log('WWWWWWWWWWWWWWWWWW21',err);
-                    if (err){
-                        return ress.json({
-                            status   : false,
-                            code     : 999,
-                            message  : 'branchId is required field.',
-                            data     : {}
-                        })
-                    }else{
-                        if(res=='undefined' || res==undefined || res==null || res==''){
-                            return ress.json({code:101,status: true, message: 'No branch avaliable.',data : {}});
-                        }else{
-                            return ress.json({code:100,status: true, message: 'Branch Detail',data : res});
-                        }
+            // branch.aggregate([
+            //         { $match: { _id: mongoose.Types.ObjectId(branchId) }},
+            //         { $lookup:
+            //         {
+            //             from: 'staffs',
+            //             localField: '_id',
+            //             foreignField: 'branchId',
+            //             as: 'staff'
+            //         }
+            //         }
+            //         ],(function(err, res) {
+            //             console.log('WWWWWWWWWWWWWWWWWW21',err);
+            //         if (err){
+            //             return ress.json({
+            //                 status   : false,
+            //                 code     : 999,
+            //                 message  : 'branchId is required field.',
+            //                 data     : {}
+            //             })
+            //         }else{
+            //             if(res=='undefined' || res==undefined || res==null || res==''){
+            //                 return ress.json({code:101,status: true, message: 'No branch avaliable.',data : {}});
+            //             }else{
+            //                 return ress.json({code:100,status: true, message: 'Branch Detail',data : res});
+            //             }
                         
+            //         }
+                    
+            //     })
+            //     )
+            var staffList=[]
+            var mainData={};
+            branch.findById({_id: mongoose.Types.ObjectId(branchId) })
+                .then(async (response)=>{
+                    const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
+                    if(response){
+                        staff.find({branchId: response._id })
+                            .then(async (staffResponse)=>{
+                               if(staffResponse){
+                                   var mainData={};
+                                
+                                staffList.push(staffResponse);
+                                await waitFor(50);
+                                    // return ress.json({code:100,status: true, message: 'Staff Detail',data : staffResponse});
+                                }else{
+                                    // return ress.json({code:101,status: false, message: 'No Staff Avaliable',data : []});
+                                }
+                            },(e)=>{
+                                // return ress.json({status: false, message:'Some Error'})
+                            })
+                            await waitFor(50);
+                            mainData.response= response 
+                            mainData.staffData= staffList
+
+                            return ress.json({code:100,status: true, message: 'Branch Detail',data : mainData});
+                        }else{
+                        return ress.json({code:101,status: false, message: 'No Branch Avaliable',data : []});
                     }
                     
+                },(e)=>{
+                    console.log('eeeeeeeeeeeeee',e);
+                    return ress.json({status: false, message:'Some Error'})
                 })
-                )
             }
         }
         catch(error){
             console.log('99999999999',error);
-            return res.json({code:102,status: false, message: 'SomeThing Went Wrong',data : []});
+            return ress.json({code:102,status: false, message: 'SomeThing Went Wrong',data : []});
         }
     
     });

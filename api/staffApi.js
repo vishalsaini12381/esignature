@@ -178,41 +178,57 @@ var staffForgotPassword = ((req,res)=>{
                     pass: 'gropse@7117'
                 }
             });
+            
             const otp = Math.floor(1000 + Math.random() * 9000);  
-            const mailOptions = {
-                from : 'shivendra.techgropse@gmail.com',
-                to : email,
-                subject : 'Account Activation | E-Signature',
-                html :   `<body>
-                          <h1>Welcome To E-Signature.</h1>
-                          <p>Your Otp is : ${otp}</p>
-                           `
-            };
-            transporter.sendMail(mailOptions, function(error,response){
-                if (error) {
-                    return res.json({
-                        status   : true,
-                        code     : 101,
-                        message  : 'OTP not send on your email.Try again.',
-                        data     : {}
-                    })
-                } else {
-                    var log  = {
-                        otp    : otp
-                    }
-                    console.log('Email sent: ');
-                    staffApis.findOneAndUpdate({staffEmailId:email},log,function(err,response){
-                        if (err){
-                            return res.json({code:103,status: false, message: 'Some error found.',data:{}});
-                        }else {
-                            return res.json({code:100,status: true, message: 'OTP send successfully.Please verify your account.',data:{}})
-                        }
-                    },(e)=>{
-                        // console.log('eeeeeeeeeeeeee',e);
-                        return res.json({code:102,status: false, message: 'Some error found',data : []});
-                    })
+            var log  = {
+                otp    : otp
+            }
+            // const mailOptions = {
+            //     from : 'shivendra.techgropse@gmail.com',
+            //     to : email,
+            //     subject : 'Account Activation | E-Signature',
+            //     html :   `<body>
+            //               <h1>Welcome To E-Signature.</h1>
+            //               <p>Your Otp is : ${otp}</p>
+            //                `
+            // };
+            // transporter.sendMail(mailOptions, function(error,response){
+            //     if (error) {
+            //         return res.json({
+            //             status   : true,
+            //             code     : 101,
+            //             message  : 'OTP not send on your email.Try again.',
+            //             data     : {}
+            //         })
+            //     } else {
+            //         var log  = {
+            //             otp    : otp
+            //         }
+            //         console.log('Email sent: ');
+            //         staffApis.findOneAndUpdate({staffEmailId:email},log,function(err,response){
+            //             if (err){
+            //                 return res.json({code:103,status: false, message: 'Some error found.',data:{}});
+            //             }else {
+            //                 return res.json({code:100,status: true, message: 'OTP send successfully.Please verify your account.',data:{}})
+            //             }
+            //         },(e)=>{
+            //             // console.log('eeeeeeeeeeeeee',e);
+            //             return res.json({code:102,status: false, message: 'Some error found',data : []});
+            //         })
+            //     }
+            //   });
+
+            staffApis.findOneAndUpdate({staffEmailId:email},log,function(err,response){
+                if (err){
+                    return res.json({code:103,status: false, message: 'Some error found.',data:{}});
+                }else {
+                    return res.json({code:100,status: true, message: 'OTP send successfully.Please verify your account.',data:{otp}})
                 }
-              });
+            },(e)=>{
+                // console.log('eeeeeeeeeeeeee',e);
+                return res.json({code:102,status: false, message: 'Some error found',data : []});
+            })
+
             });
         }else{
             return res.json({

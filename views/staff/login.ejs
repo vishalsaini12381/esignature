@@ -230,7 +230,7 @@ function forgotPassword(){
         if(response.data.code==100){
             swal({
                 title: "Success!",
-                text: response.data.message,
+                text: response.data.message+'OTP is :'+response.data.data.otp,
                 icon: "success",
                 dangerMode: false,
                 closeOnClickOutside: false,

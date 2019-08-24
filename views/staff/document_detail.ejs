@@ -1,0 +1,104 @@
+<% include layout/header %>
+<div class="content-wrapper">
+    <div class="content-header sty-one">
+        <h1>Document Detail</h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><i class="fa fa-angle-right"></i>Document Detail</li>
+        </ol>
+    </div>
+    <div class="content prifilesetting">
+        <div class="card">
+            <div class="card-body">
+              <div class="doc_file">
+                  <div class="row">
+                      <div class="col-lg-6 col-xs-6 b-r"> 
+                        <ul class="mailbox-attachments clearfix">
+                            <li> <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                              <!-- <div class="mailbox-attachment-info"><span class="mailbox-attachment-size"> 1,245 KB <a href="#" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a> </span> </div> -->
+                            </li>
+                        </ul>
+                      </div>
+                   </div>
+               </div>
+               <div class="doc_detail">
+                   <div class="row">
+                    <div class="col-lg-4 col-xs-6 b-r"> <strong>Document Name</strong> <br>
+                      <p class="text-muted" id="documentName"> </p>
+                    </div>
+                    <div class="col-lg-4 col-xs-6 b-r"> <strong>Plate Number</strong> <br>
+                      <p class="text-muted" id="plateNo"></p>
+                    </div>
+                    <div class="col-lg-4 col-xs-6 b-r"> <strong>messege</strong> <br>
+                      <p class="text-muted" id="message"></p>
+                    </div>
+                  </div>
+                </div>
+               <div class="participate_detail">
+                <h3>Participate Detail</h3>
+                   <div class="row" id="staffData" >
+                    
+                    
+
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<% include layout/footer %>
+
+
+<script>
+
+    console.log('docId=','<%=query%>')
+    axios.post('/api/documentDetail',{documentId:'<%=query%>'})
+       .then((responseData)=>{
+            var result=responseData.data.data;
+            console.log('ssss',responseData)
+            if(responseData.data.code==100){
+                console.log('result',result)
+                $("#documentName").html(result.document_name);
+                $("#plateNo").html(result.plate_number);
+                $("#message").html(result.message);
+                
+                var participantResp=responseData.data.data.participant;
+                if(participantResp){
+                    var htmlData='';var sr=1;
+                    $("#staffData").empty();
+                    participantResp.forEach(element => {
+                        htmlData='<div class="col-lg-4 m-b-3">';
+                            htmlData+='<div class="card">';
+                                htmlData+='<div class="card-body">';
+                                    htmlData+='<div class="mail-contnet">';
+                                        htmlData+=' <h4 class="text-black"><i class="fa fa-user"></i> '+element.participantsName+'</h4>';
+                                        htmlData+=' <p><i class="fa fa-pencil"></i> '+element.participantsTitle+'</p> ';
+                                        htmlData+='<p><i class="fa fa-pencil"></i> '+(element.signatureType == '1'?'Signature':(element.signatureType == '2'?'Thumbprint':(element.signatureType == '3'?'Signature & Thumbprint': '')))+'</p>';
+                                        htmlData+= '</div>';
+                                        htmlData+='</div>';
+                                        htmlData+=' </div>';
+                                        htmlData+='</div>';
+                        // console.log(htmlData)
+                        $("#staffData").append(htmlData);
+                        sr++;
+                    });
+                }
+           }else{
+                swal({
+                    title: "OOPS!",
+                    text: 'Something Went Wrong',
+                    icon: "warning",
+                    dangerMode: true,
+                    closeOnClickOutside: false,
+                }).then(function() {
+                    window.location.href='exixting-document';
+                });
+           }},(e)=>{
+               
+           });
+
+   
+
+    </script>

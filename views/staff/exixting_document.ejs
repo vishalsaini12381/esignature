@@ -1,0 +1,113 @@
+<% include layout/header %>
+<div class="content-wrapper">
+    <div class="content-header sty-one">
+        <h1>Branch List</h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><i class="fa fa-angle-right"></i>Document List</li>
+        </ol>
+    </div>
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="info-box">
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example1" class="table table-bordered table-striped table-button">
+                                <thead>
+                                    <tr>
+                                        <th>Sr. No.</th>
+                                        <th>Document Name</th>
+                                        <th>Plate No</th>
+                                        <th>message</th>
+                                        <th>createdAt</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyData">
+                                    <tr class="odd"><td valign="top" colspan="7" class="dataTables_empty">No data available in table</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+ <% include layout/footer %>
+ <script>
+    
+    var userId='';
+    var getData=localStorage.getItem('staffLogin');
+        if(getData==null || getData==''){
+            window.location="/staff";
+            swal({
+                title: "warning!",
+                text: "Session Expired...",
+                icon: "success",
+                dangerMode: true,
+                closeOnClickOutside: false,
+            }).then(function() {
+                window.location.href='staff';
+            });
+        }else{
+            getData = $.parseJSON(getData);
+            userId=getData.tokenId;
+        }
+
+        
+ axios.post('/api/documentList',{staffId:userId})
+    .then((response)=>{
+        var result=response.data.data;
+        if(response.data.code==100){
+            var htmlData='';var sr=1;
+            $("#tbodyData").empty();
+            result.forEach(function(res){
+                // console.log(res);
+                htmlData='<tr>'
+                            +'<td>'+sr+'</td>'
+                            +'<td>'+res['document_name']+'</td>'
+                            +'<td>'+res['plate_number']+'</td>'
+                            +'<td>'+res['message']+'</td>'
+                            +'<td>'+res['createdAt']+' </td>'
+                            +'<td>In Process</td>'
+                            +'<td>'
+                                +'<div class="actionpart">'
+                                    +'<a href="http://gropse.com/gropse.com/design/esignature/staff/">'
+                                        +'<i class="fa fa-download"></i>'
+                                    +'</a>' 
+                                    +'<a href="document-detail?id='+res['_id']+'">'
+                                        +'<i class="fa fa-eye"></i>'
+                                    +'</a>'
+                                +'</div>'
+                            +'</td>'
+                        +'</tr>';
+                        // console.log(htmlData)
+                $("#tbodyData").append(htmlData);
+                sr++;
+            })
+            $("#footerDiv").load(location.href + " #footerDiv");
+        }},(e)=>{
+            
+        });
+
+    function changeStatus(obj,id,status){
+        if(id){
+            axios.post('/api/branchStatusChange',{status:status,branchId:id})
+                .then((response)=>{
+                    var result=response.data.data;
+                    if(response.data.code==100){
+                       location.reload();
+                    }},(e)=>{
+                        
+                    });
+        }
+    }
+ </script>

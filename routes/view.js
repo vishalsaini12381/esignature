@@ -54,6 +54,16 @@ router.get('/staff/upload-document', function(req, res, next) {
 router.get('/staff/my-profile', function(req, res, next) {
   res.render('staff/my_profile');
 });
+router.get('/staff/upload-new-document', function(req, res, next) {
+  res.render('staff/upload_new_document');
+});
+router.get('/staff/exixting-document', function(req, res, next) {
+  res.render('staff/exixting_document');
+});
+router.get('/staff/document-detail', function(req, res, next) {
+  res.render('staff/document_detail',{query : req.query.id});
+});
+
 router.get('/staff/logout', function(req, res, next) {
   res.render('staff/logout');
 });

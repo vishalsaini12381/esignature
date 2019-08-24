@@ -1,0 +1,445 @@
+
+<% include layout/header %>
+<style>
+    .paswwordeye input {
+     position: relative;
+ }
+    .paswwordeye a {
+     position: absolute;
+     top: 29px;
+     right: 15px;
+     color: #fff !important;
+     background: #1136bc;
+     padding: 9px 12px;
+     border-radius: 0px 7px 5px 0px;
+ }
+ </style>
+    <div class="content-wrapper">
+        <div class="content-header sty-one">
+            <h1>Upload Document</h1>
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><i class="fa fa-angle-right"></i> Upload Document</li>
+            </ol>
+        </div>
+        <div class="content">
+            <div class="card">
+                <div class="card-body">
+                <h4 class="text-black m-b-3">Upload Document in 4 Simple Step</h4>
+                <div id="demo">
+                  <div class="step-app">
+                    <ul class="step-steps">
+                      <li id="stepLi1"><a href="#step1"><span class="number">1</span> Upload Document</a></li>
+                      <li id="stepLi2"><a href="#step2"><span class="number">2</span> Add Document Detail</a></li>
+                      <li id="stepLi3"><a href="#step3"><span class="number">3</span> Add Participants</a></li>
+                      <li id="stepLi4"><a href="#step4"><span class="number">4</span> Document Detail</a></li>
+                    </ul>
+                    <div class="step-content">
+                      <div class="step-tab-panel" id="step1">
+                        <form id="imageUploadForm" action="http://localhost:3000/api/uploadDocumentImage" enctype="multipart/form-data" method="POST">
+                          <div class="row m-t-2">
+                            <div class="col-md-12">
+                                <div class="upload-file">
+                                  <label for="input-file-now">Drag and Drop a File / Document</label>
+                                  <!-- <input type="file" accept="application/pdf" name="image" id="input-file-now" class="dropify" /> -->
+                                  <input type="file" name="image" onchange="uploadImage(this)" id="input-file-now" class="dropify" />
+                                  <input class="form-control" id="imageUrl" type="hidden">
+                                  <div class="errorPrint" style ="font-size:13px;color:red;display:none;" id="imageError"></div><br/>
+                                  <button  style="float: right" onclick="firstStep(this)" class="btn btn-primary formwizartbtn">Next</button>
+                                  <!-- <input type="button" onclick="uploadImage(this)" value="Upload a file"/> -->
+                                </div>
+                            </div>
+                          </div>
+                          <div class="step-footer">
+                            
+                          </div>
+                        </form>
+                        
+                      </div>
+                      <div class="step-tab-panel" id="step2">
+                        <div class="documentdetail">
+                           <div class="row m-t-2">
+                              <div class="col-md-4">
+                                  <div class="mailbox-attachments">
+                                      <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                                      <div class="mailbox-attachment-info"> <a href="#" class="mailbox-attachment-name"> 23-08-2019</a> <span class="mailbox-attachment-size"> 3 Pages</span> </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-8">
+                                <div class="form-group">
+                                  <label for="videoUrl1">Document Name * :</label>
+                                  <input class="form-control inputText" id="documentName" type="text" Placeholder="Document Name">
+                                  <div class="errorPrintStep2" style ="font-size:13px;color:red;display:none;" id="documentNameError"></div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="videoUrl1">Plate Number * :</label>
+                                  <input class="form-control inputText"  id="plateNo" type="text" Placeholder="plate No">
+                                  <div class="errorPrintStep2" style ="font-size:13px;color:red;display:none;" id="plateNoError"></div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="videoUrl1">Add Messege :</label>
+                                  <textarea class="form-control inputText" id="message" rows="3"></textarea>
+                                  <div class="errorPrintStep2" style ="font-size:13px;color:red;display:none;" id="messageError"></div>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <button  style="float: right" onclick="secondStep(this)" class="btn btn-primary formwizartbtn">Next</button>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="step-tab-panel" id="step3">
+                        <div class="row m-t-2">
+                          <div class="col-md-4">
+                            <div class="documentdetail">
+                            <div class="addparticipate">
+                              <div id="addMoreChildDiv1">
+                                <div class="form-group">
+                                  <input class="form-control inputTextStep3" type="text" id="participantsName1" placeholder="Participants Name">
+                                  <div class="errorPrintStep3" style ="font-size:13px;color:red;display:none;" id="participantsName1Error"></div>
+                                </div>
+                                <div class="form-group">
+                                  <input class="form-control inputTextStep3" id="participantsTitle1" type="text" placeholder="Title">
+                                  <div class="errorPrintStep3" style ="font-size:13px;color:red;display:none;" id="participantsTitle1Error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="radio-inline"><input type="radio" value="1" name="optradio1" checked>Signature</label>
+                                    <label class="radio-inline"><input type="radio" value="2" name="optradio1">ThumbPrint</label>
+                                    <label class="radio-inline"><input type="radio" value="3" name="optradio1">Both</label>
+                                </div>
+                                  <hr/>
+                              </div>
+                                <div id="addMoreDiv">
+                                    
+                                </div>
+
+                                <div class="checkicon">
+                                    <a style="cursor: pointer;color:#fff;" id="addMorecountable" data-status="2"  onclick="addMore(this)" class="addmore">Add More</a>
+                                </div>
+                                  <a href="#" class="crosedata"><i class="fa fa-check"></i></a>
+
+                            </div>
+                        </div>
+
+                          </div>
+                          <div class="col-md-8">
+                            <div class="documentdetail">
+                               <div class="row m-t-2">
+                                  <div class="col-md-4">
+                                      <div class="mailbox-attachments">
+                                          <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                                          <div class="mailbox-attachment-info"> <a href="#" class="mailbox-attachment-name"> 23-08-2019</a> <span class="mailbox-attachment-size"> 3 Pages</span> </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="form-group">
+                                      <label for="videoUrl1">Document Name * :</label>
+                                      <input class="form-control" readonly style="cursor:no-drop"  id="documentNamePrint" type="text" placeholder="Property Docuent">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="videoUrl1">Plate Number * :</label>
+                                      <input class="form-control" readonly style="cursor:no-drop"  id="plateNoPrint" type="text" placeholder="P1245478555">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="videoUrl1">Add Messege :</label>
+                                      <textarea class="form-control" readonly id="messagePrint" rows="3" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. "></textarea>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <button  style="float: right" onclick="thirdStep(this)" class="btn btn-primary formwizartbtn">Next</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="step-tab-panel" id="step4">
+                        <div class="row m-t-2">
+                          <div class="col-md-4">
+                                <div class="documentdetail">
+                                    <div class="card-body">
+                                      <div class="box-body"> 
+                                        <div id="appendStep4">
+                                          
+                                        </div>
+                                        
+                                    </div>
+                                    </div>
+                              </div>
+                          </div> 
+                          <div class="col-md-8">
+                            <div class="documentdetail">
+                               <div class="row m-t-2">
+                                  <div class="col-md-4">
+                                      <div class="mailbox-attachments">
+                                          <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+                                          <div class="mailbox-attachment-info"> <a href="#" class="mailbox-attachment-name"> 23-08-2019</a> <span class="mailbox-attachment-size"> 3 Pages</span> </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="form-group">
+                                      <label for="videoUrl1">Document Name * :</label>
+                                      <input class="form-control" id="documentNamePrint2" readonly type="text" placeholder="Property Docuent">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="videoUrl1">Plate Number * :</label>
+                                      <input class="form-control" id="plateNoPrint2" readonly type="text" placeholder="P1245478555">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="videoUrl1">Add Messege :</label>
+                                      <textarea class="form-control" id="messagePrint2" readonly rows="3" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. "></textarea>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                      <button  style="float: right" onclick="saveDocument(this)" class="btn btn-primary formwizartbtn">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="step-footer">
+                      <button data-direction="next" class="btn btn-primary formwizartbtn">Upload & Next</button>
+                      <button data-direction="finish" class="btn btn-primary formwizartbtn">Submit</button>
+                    </div> -->
+                  </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+<% include layout/footer %>
+<script>
+    var userId='';
+    var getData=localStorage.getItem('staffLogin');
+        if(getData==null || getData==''){
+            window.location="/staff";
+            swal({
+                title: "warning!",
+                text: "Session Expired...",
+                icon: "success",
+                dangerMode: true,
+                closeOnClickOutside: false,
+            }).then(function() {
+                window.location.href='staff';
+            });
+        }else{
+            getData = $.parseJSON(getData);
+            userId=getData.tokenId;
+        }
+        
+
+        var arr1 = [];
+        $('#imageUploadForm').on('submit',(function(e) {
+            console.log('sssssssss')
+            e.preventDefault();
+            var formData = new FormData(this);
+
+            $.ajax({
+                type:'POST',
+                url: 'http://localhost:3000/api/uploadDocumentImage',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                success:function(data){
+                    console.log("success");
+                    console.log(data);
+                    if(data.code==100){
+                        $("#imageUrl").val('')
+                        $("#imageUrl").val(data.image)
+                    }
+                },
+                error: function(data){
+                    console.log("error");
+                    console.log(data);
+                }
+            });
+        }));
+        function uploadImage(obj){
+           $("#imageUploadForm").submit();
+        }
+
+        function firstStep(obj){
+            var imageUrl=$("#imageUrl").val();
+            if(imageUrl){
+                $("#stepLi1").removeClass('active')
+                $("#stepLi1").addClass('done')
+                $("#stepLi2").addClass('active')
+                $("#step1").removeClass('active')
+                $("#step2").addClass('active')
+            }else{
+                $("#imageError").empty();
+                $("#imageError").append('*Image is required filed');
+                $("#imageError").css('display','block');
+            }
+        }
+        function secondStep(obj){
+            $(".errorPrintStep2").css('display','none');
+            var idValidate=false;
+            $(".inputText").each(function (index, value) {
+                // console.log('div' + index + ':' + $(this).attr('id'));
+                if($(this).val()){
+                    $("#"+$(this).attr('id')+'Error').css('display','none');
+                }else{
+                    idValidate=true;
+                    $("#"+$(this).attr('id')+'Error').empty();
+                    $("#"+$(this).attr('id')+'Error').append('*'+$(this).attr('id')+' is required field');
+                    $("#"+$(this).attr('id')+'Error').css('display','block');
+                }
+            });
+            if(idValidate){
+                return false;
+            }else{
+              $("#documentNamePrint").val($("#documentName").val());
+              $("#plateNoPrint").val($("#plateNo").val());
+              $("#messagePrint").val($("#message").val());
+              $("#documentNamePrint2").val($("#documentName").val());
+              $("#plateNoPrint2").val($("#plateNo").val());
+              $("#messagePrint2").val($("#message").val());
+                $("#stepLi2").removeClass('active')
+                $("#stepLi2").addClass('done')
+                $("#stepLi3").addClass('active')
+                $("#step2").removeClass('active')
+                $("#step3").addClass('active')
+            }
+            
+        }
+        function thirdStep(obj){
+            arr1  = [];
+            $("#appendStep4").empty();
+            $(".errorPrintStep3").css('display','none');
+            var idValidate=false;
+            $(".inputTextStep3").each(function (index, value) {
+                // console.log('div' + index + ':' + $(this).attr('id'));
+                if($(this).val()){
+                    $("#"+$(this).attr('id')+'Error').css('display','none');
+                }else{
+                    idValidate=true;
+                    $("#"+$(this).attr('id')+'Error').empty();
+                    $("#"+$(this).attr('id')+'Error').append('*'+$(this).attr('id')+' is required field');
+                    $("#"+$(this).attr('id')+'Error').css('display','block');
+                }
+            });
+            if(idValidate){
+                return false;
+            }else{
+              var htmlData='';
+              var dataStatus=$("#addMorecountable").attr('data-status');
+              console.log('dataStatus',dataStatus)
+              for(var i=1;i<dataStatus; i++){
+                // $("#addMoreChildDiv"+i)
+                if($("#addMoreChildDiv" + i).length == 0) {
+                    console.log('addMoreChildDiv'+i,'not exist')
+                }else{
+                  console.log('addMoreChildDiv'+i,'exist')
+                  var participantsName=$("#participantsName"+i).val();
+                  var participantsTitle=$("#participantsTitle"+i).val();
+                  var signatureType=$('input[name=optradio'+i+']:checked').val();
+                  console.log(signatureType+'/'+i);
+                  var obj={
+                    participantsName  : participantsName,
+                    participantsTitle : participantsTitle,
+                    signatureType     : signatureType
+                  }
+                    htmlData='<strong><i class="fa fa-user margin-r-5"></i>'+participantsName+' ('+participantsTitle+')</strong>';
+                      if(signatureType==1){
+                        htmlData	+='<p class="text-muted"><i class="fa fa-pencil margin-r-5"></i> Signature </p>';
+                      }else if(signatureType==2){
+                        htmlData	+='<p class="text-muted"><i class="fa fa-pencil margin-r-5"></i> ThumbPrint </p>';
+                      }else{
+                        htmlData	+='<p class="text-muted"><i class="fa fa-pencil margin-r-5"></i> Signature </p><p class="text-muted"><i class="fa fa-pencil margin-r-5"></i> ThumbPrint </p>';
+                      }
+                      htmlData	+='<hr>';
+                  $("#appendStep4").append(htmlData);
+                  console.log(arr1)
+                  arr1.push(obj)
+                }
+             }
+              console.log(arr1)
+              $("#stepLi3").removeClass('active')
+              $("#stepLi3").addClass('done')
+              $("#stepLi4").addClass('active')
+              $("#step3").removeClass('active')
+              $("#step4").addClass('active')
+
+            }
+            
+        }
+
+        function addMore(obj){
+          var dataStatus=$(obj).attr('data-status');
+          var htmlData='<div id="addMoreChildDiv'+dataStatus+'"><i class="fa fa-times-circle" id="addMoreBtn" data-status="1" onclick="deleteChildDiv(this,\'addMoreChildDiv' + dataStatus + '\')" style=" float: right; background: black; border-radius: 14px; color: #fff; padding: 3px; "></i>'
+                          +'<div class="form-group">'
+                              +'<input class="form-control inputTextStep3" type="text" id="participantsName'+dataStatus+'" placeholder="Participants Name">'
+                              +'<div class="errorPrintStep3" style ="font-size:13px;color:red;display:none;" id="participantsName'+dataStatus+'Error"></div>'
+                          +'</div>'
+                          +'<div class="form-group">'
+                                +'<input class="form-control inputTextStep3" id="participantsTitle'+dataStatus+'" type="text" placeholder="Title">'
+                                +'<div class="errorPrintStep3" style ="font-size:13px;color:red;display:none;" id="participantsTitle'+dataStatus+'Error"></div>'
+                          +'</div>'
+                          +'<div class="form-group">'
+                                +'<label class="radio-inline"><input type="radio" value="1" name="optradio'+dataStatus+'" checked>Signature</label>'
+                                +'<label class="radio-inline"><input type="radio" value="2" name="optradio'+dataStatus+'">ThumbPrint</label>'
+                                +'<label class="radio-inline"><input type="radio" value="3"name="optradio'+dataStatus+'">Both</label>'
+                          +'</div><hr/></div>';
+          $("#addMoreDiv").append(htmlData);
+          dataStatus++;
+          $(obj).attr('data-status',dataStatus);
+        }
+        function deleteChildDiv(obj,id){
+          $("#"+id).remove();
+        }
+
+
+        function saveDocument(obj){
+          var imageUrl=$("#imageUrl").val();
+          var documentName=$("#documentName").val();
+          var plateNo=$("#plateNo").val();
+          var message=$("#message").val();
+          var participant=arr1;
+          
+          
+            if(imageUrl && documentName && plateNo && message){
+              axios.post('/api/uploadDocument',{staffId:userId,document:imageUrl,document_name:documentName,plate_number:plateNo,message:message,participant:participant})
+                    .then((branchListResponse)=>{
+                        if(branchListResponse.data.code==100){
+                            swal({
+                                title: "Success",
+                                text: branchListResponse.data.message,
+                                icon: "success",
+                                dangerMode: false,
+                                closeOnClickOutside: false,
+                            }).then(function() {
+                                window.location.reload();
+                            });
+                        }else{
+                            swal({
+                                title: "OOPS!",
+                                text: branchListResponse.data.message,
+                                icon: "warning",
+                                dangerMode: true,
+                                closeOnClickOutside: false,
+                            }).then(function() {
+                                //window.location.reload();
+                            });
+                        }
+                    },(e)=>{
+                            
+                    });
+            }else{
+                swal({
+                    title: "OOPS!",
+                    text: "Something went wrong",
+                    icon: "warning",
+                    dangerMode: true,
+                    closeOnClickOutside: false,
+                }).then(function() {
+                    //window.location.reload();
+                });
+            }
+        }
+
+</script>

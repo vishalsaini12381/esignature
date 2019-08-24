@@ -33,7 +33,7 @@
   background-color: #ddd;
 }
 .step-app > .step-steps > li.active a {
-  background-color: #FF9800;
+  background-color: #1136bc;
   color: #fff;
 }
 .step-app > .step-steps > li.error a {
@@ -69,5 +69,46 @@
   border: none;
   outline: none;
   cursor: pointer;
+}
+.formwizartbtn.btn-primary {
+    background-color: #1136bc;
+    border-color: #1136bc;
+}
+.upload-file .dropify-wrapper{
+  border: 2px solid #9a9a9a;
+    border-style: dashed;
+}
+.documentdetail{
+    border: 2px solid #9a9a9a;
+    border-style: dashed;
+    padding: 20px 20px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.addparticipate .radio-inline {
+    margin-right: 20px;
+}
+.addparticipate {
+    border: 1px solid #dcdcff8a;
+    padding: 30px 10px;
+    border-radius: 5px;
+    position: relative;
+}
+.addparticipate  .addmore{
+    padding: 2px 5px;
+    background: #1136bc;
+    color: #ffffff;
+    float: right;
+    font-size: 14px;
+    border-radius: 5px;
+    display: inline-block;
+}
+.addparticipate  .crosedata{
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    color: #1136bc;
+    font-size: 14px;
+    font-weight: 600;
 }
 /*# sourceMappingURL=jquery-steps.css.map */

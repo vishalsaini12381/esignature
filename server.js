@@ -101,6 +101,11 @@ app.get(/\/create(.*)(\/|\.html)$/, (req, res, next) => {
 	}
 });
 
+app.use(express.json({limit: '500mb'}));
+app.use(express.urlencoded({ extended: true }));
+
+
+
 app.use('/samples', express.static('samples'));
 app.use('/doc', express.static('doc'));
 app.use('/lib', express.static('lib'));
